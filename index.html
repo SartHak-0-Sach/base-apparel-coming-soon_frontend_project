@@ -17,15 +17,23 @@
 
   <div id="container">
     <div id="left-content">
-      <h1>Base Apparel</h1>
-      <p>We're coming soon</p>
-      <p>Hello fellow shoppers! We're currently building our new fashion store. Add your email below to stay up-to-date
+      <img src="/images/logo.svg" alt="Logo of Base Apparel" id="logo">
+      <br>
+      <h1 class="orange" id="orange-heading">WE'RE</h1>
+      <h1 class="black-heading">COMING</h1>
+      <h1 class="black-heading">SOON</h1>
+      <br>
+      <p class="orange">Hello fellow shoppers! We're currently building our new fashion store. Add your email below to stay up-to-date
         with announcements and our launch deals.</p>
-      <form id="form">
-        <input type="email" id="email" placeholder="Email Address">
-        <button type="submit" id="submit">Notify Me</button>
+        <br>
+      <form>
+        <input type="email" placeholder="Email Address">
+        <img id="error-icon" src="/images/icon-error.svg" alt="error-icon">
+        <button type="submit" title="submit" id="custom-button">
+          <img src="/images/icon-arrow.svg" alt="arrow icon">
+        </button>
       </form>
-      <p id="error-message"></p>
+      <p id="error-message">Please provide a valid email</p>
     </div>
     <div id="right-image"></div>
   </div>
