@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base Apparel coming soon project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Base Apparel coming soon page</title>
+
+  <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    
+
+  <div id="container">
+    <div id="left-content">
+      <img src="/images/logo.svg" alt="Logo of Base Apparel" id="logo">
+      <br>
+      <h1 class="orange" id="orange-heading">WE'RE</h1>
+      <h1 class="black-heading">COMING</h1>
+      <h1 class="black-heading">SOON</h1>
+      <br>
+      <p class="orange">Hello fellow shoppers! We're currently building our new fashion store. Add your email below to stay up-to-date
+        with announcements and our launch deals.</p>
+        <br>
+      <form>
+        <input type="email" placeholder="Email Address">
+        <img id="error-icon" src="/images/icon-error.svg" alt="error-icon">
+        <button type="submit" title="submit" id="custom-button">
+          <img src="/images/icon-arrow.svg" alt="arrow icon">
+        </button>
+      </form>
+      <p id="error-message">Please provide a valid email</p>
+    </div>
+    <div id="right-image"></div>
+  </div>
+
+  <script src="script.js"></script>
+
 </body>
+
 </html>

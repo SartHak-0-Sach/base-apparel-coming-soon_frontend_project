@@ -1,105 +1,379 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
-
+/* ------------------- */
+/* Custom properties   */
+/* ------------------- */
 :root {
-    --primary: hsl(0, 36%, 70%);
-    --soft-red: hsl(0, 93%, 68%);
-    --dark-grayish-red: hsl(0, 6%, 24%);
-    --first-gradient: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
-    --second-gradient: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+    --clr-red-100: 0 36% 70%;
+    --clr-red-200: 0 80% 86%;
+    --clr-red-300: 0 74% 74%;
+    --clr-red-400: 0 92% 68%;
+    --clr-neutral-100: 0 0% 100%;
+    --clr-neutral-200: 0 100% 98%;
+    --clr-neutral-800: 0 6% 24%;
+
+    --ff-sans: "Josefin Sans", sans-serif;
+
+    --fs-300: 0.8125rem;
+    --fs-400: 0.875rem;
+    --fs-800: 2.5rem;
+
+    --lh-300: 0.8125rem;
+    --lh-400: 1.375rem;
+    --lh-800: 2.625rem;
+
+    --ls-800: 0.6766rem;
+
+    --fw-300: 300;
+    --fw-400: 400;
+    --fw-600: 600;
 }
 
-* {
-    margin: 0;
-    padding: 0;
+@media (min-width: 90em) {
+    :root {
+        --fs-400: 1rem;
+        --fs-800: 4rem;
+
+        --lh-300: 1.75rem;
+        --lh-400: 1.75rem;
+        --lh-800: 4.4375rem;
+
+        --ls-800: 1.0825rem;
+    }
+}
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
 body {
-    background-image: url('/images/bg-pattern-desktop.svg');
-    font-family: 'Josefin Sans', sans-serif;
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: var(--lh-400);
+    font-family: var(--ff-sans);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-400);
+    background: linear-gradient(150.03deg,
+            hsl(var(--clr-neutral-100)) 0%,
+            hsl(var(--clr-neutral-200)) 84.51%);
+    color: hsl(var(--clr-red-100));
 }
 
-#container {
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ------------------- */
+/* Composition         */
+/* ------------------- */
+.flex {
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-#left-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0px 300px 80px 80px;
-    height: 100vh;
+.grid {
+    display: grid;
 }
 
-#left-content #logo {
-    width: 170px;
-    margin-bottom: 110px;
+.block {
+    display: block;
 }
 
-#right-image {
-    background-image: url('/images/hero-desktop.jpg');
+.hidden {
+    display: none;
+}
+
+/* ------------------- */
+/* Utility             */
+/* ------------------- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.text-red-100 {
+    color: hsl(var(--clr-red-100));
+}
+
+.text-red-400 {
+    color: hsl(var(--clr-red-400));
+}
+
+.text-neutral-800 {
+    color: hsl(var(--clr-neutral-800));
+}
+
+.fs-300 {
+    font-size: var(--fs-300);
+    line-height: var(--lh-300);
+}
+
+.fs-800 {
+    font-size: var(--fs-800);
+    line-height: var(--lh-800);
+}
+
+.fw-300 {
+    font-weight: var(--fw-300);
+}
+
+.fw-600 {
+    font-weight: var(--fw-600);
+}
+
+.ls-wider {
+    letter-spacing: var(--ls-800);
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+/* ------------------- */
+/* Block               */
+/* ------------------- */
+.landing {
+    min-height: 100vh;
+    min-width: min-content;
+    align-content: flex-start;
+    margin-inline: auto;
+    max-width: 40rem;
+    grid-template-areas:
+        "logo"
+        "hero"
+        "intro";
+}
+
+.landing>.logo {
+    grid-area: logo;
+    max-width: 6.25rem;
+    margin: 2rem;
+}
+
+.landing>.hero {
+    grid-area: hero;
+}
+
+.landing>.hero img {
     width: 100%;
-    height: 100vh;
 }
 
-#orange-heading {
-    font-weight: 300 !important;
-    letter-spacing: 11px;
-    font-size: 60px;
+.landing>.intro {
+    grid-area: intro;
+    margin: 4rem 2rem 4.4375rem;
+    text-align: center;
 }
 
-.orange {
-    color: var(--primary);
-    font-weight: 400;
+.landing>.intro .description {
+    margin-block: 1rem 2rem;
 }
 
-.black-heading {
-    font-weight: 600;
-    letter-spacing: 11px;
-    font-size: 60px;
-}
-
-form {
-    display: flex;
-    align-items: center;
-}
-
-form input {
-    width: 100%;
-    height: 50px;
-    border-radius: 25px;
-    border-color: var(--primary);
-    padding: 25px;
-    border-width: 1.5px;
-    display: inline-block;
-    color: var(--soft-red);
-}
-
-input::placeholder {
-    color: var(--primary);
-    font-family: 'Josefin Sans', sans-serif;
-    opacity: 70%;
-    font-weight: 400;
-}
-
-#error-icon {
+.landing>.intro #sign-up-form {
     position: relative;
-    margin: 20px 5px;
-    display: inline-block;
-    height: 25px;
 }
 
-#custom-button {
-    height: 50px;
-    width: 120px;
-    border-radius: 25px;
-    border: none;
-    background: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+.landing>.intro #sign-up-form .control {
+    gap: 0.5rem;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
-#error-message {
-    font-size: 14px;
-    color: var(--soft-red);
+@media (min-width: 90em) and (max-height: 90em) {
+    .landing {
+        grid-template-columns: auto 610px;
+        grid-template-rows: min-content 1fr;
+        grid-template-areas:
+            "logo hero"
+            "intro hero";
+        max-width: none;
+        background-image: url("./images/bg-pattern-desktop.svg");
+        background-repeat: repeat-x;
+        background-size: calc(100% - 610px) 100%;
+    }
+
+    .landing>.logo {
+        margin: 4.0625rem 0 0 10.3125rem;
+        max-width: 9.875rem;
+    }
+
+    .landing>.hero img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .landing>.intro {
+        margin: 8.5rem 13.75rem 8.125rem 10.3125rem;
+        text-align: start;
+    }
+
+    .landing>.intro h1 span {
+        line-height: 1;
+    }
+
+    .landing>.intro .description {
+        margin-block: 2rem 2.5rem;
+    }
+
+    .landing>.intro #sign-up-form .control {
+        gap: 1rem;
+    }
+}
+
+/* ------------------- */
+/* Exception           */
+/* ------------------- */
+.input {
+    appearance: none;
+    outline: none;
+    background: transparent;
+    border: 0;
+    font-size: var(--fs-400);
+    line-height: var(--lh-400);
+    font-weight: var(--fw-400);
+}
+
+.input[data-variant="primary"] {
+    border: 1px solid hsl(var(--clr-red-100) / 0.5);
+    border-radius: 1.75rem;
+    color: hsl(var(--clr-neutral-800));
+    width: 100%;
+    padding: 0.75rem 7.5rem 0.75rem 1.5rem;
+    max-height: 3rem;
+}
+
+.input[data-variant="primary"]::placeholder {
+    color: hsl(var(--clr-red-100) / 0.5);
+}
+
+.input[data-variant="primary"][aria-invalid="true"] {
+    border: 2px solid hsl(var(--clr-red-400));
+}
+
+.input[data-variant="primary"][aria-invalid="true"]~.control img {
+    display: block;
+}
+
+.error {
+    box-sizing: content-box;
+    text-align: start;
+    min-height: 0.8125rem;
+    padding: 0.5rem 0 0 1.5rem;
+}
+
+.button {
+    display: block;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    font-size: var(--fs-400);
+    line-height: var(--lh-400);
+    font-weight: var(--fw-400);
+    text-align: center;
+}
+
+.button[data-variant="primary"] {
+    border-radius: 1.7rem;
+    background: linear-gradient(135deg,
+            hsl(var(--clr-red-200)) 0%,
+            hsl(var(--clr-red-300)) 100%);
+    box-shadow: 0px 15px 20px hsla(0 44% 60% / 0.248);
+    padding: 0.875rem 1.625rem;
+    max-height: 3rem;
+}
+
+.button[data-variant="primary"]:hover,
+.button[data-variant="primary"]:focus {
+    background: linear-gradient(135deg,
+            hsl(var(--clr-red-200) / 0.5) 0%,
+            hsl(var(--clr-red-300) / 0.5) 100%),
+        hsl(var(--clr-neutral-100));
+}
+
+@media (min-width: 90em) {
+    .input[data-variant="primary"] {
+        padding: 0.9375rem 9.75rem 0.8125rem 2rem;
+        max-height: 3.5rem;
+    }
+
+    .error {
+        min-height: 1.75rem;
+        padding: 0.25rem 0 0 2rem;
+    }
+
+    .button[data-variant="primary"] {
+        padding: 1.1875rem 44px;
+        max-height: 3.5rem;
+    }
 }
