@@ -1,32 +1,26 @@
-const signUpForm = document.querySelector("#sign-up-form");
-const emailInput = document.querySelector("#email-input");
-const emailError = document.querySelector("#email-error");
+const formWrapperEle = document.querySelector(".form-wrapper");
+const emailInputEle = document.querySelector(".email-input");
+console.log(emailInputEle);
 
-signUpForm.noValidate = true;
+const emailReg = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i;
 
-emailInput.addEventListener("input", (event) => {
-    if (!emailInput.validity.valueMissing && !emailInput.validity.patternMismatch) {
-        emailInput.setAttribute("aria-invalid", false);
-        emailError.textContent = "";
-    }
-});
+const submitHandler = (event) => {
+  event.preventDefault();
+  const userInput = emailInputEle.value;
 
-signUpForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+  formWrapperEle.classList.remove("error");
+  formWrapperEle.classList.remove("success");
 
-    if (emailInput.validity.valueMissing || emailInput.validity.patternMismatch) {
-        emailInput.setAttribute("aria-invalid", true);
-        emailError.textContent = "Please provide a valid email";
-        emailInput.focus();
-        return;
-    };
+  if (!emailReg.test(userInput)) {
+    void formWrapperEle.offsetWidth;
+    formWrapperEle.classList.add("error");
+    return;
+  } else {
+    void formWrapperEle.offsetWidth;
+    formWrapperEle.classList.add("success");
+    emailInputEle.value = "";
+  }
+};
 
-    try {
-        alert("Thanks for subscribing!");
-
-        emailInput.setAttribute("aria-invalid", false);
-        emailError.textContent = "";
-    } catch (e) {
-        alert("Oops! Something went wrong. Please try again later.");
-    }
-});
+const submitButton = document.querySelector(".btn");
+submitButton.addEventListener("click", submitHandler);
