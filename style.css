@@ -168,8 +168,6 @@ h3 {
 
 /* Footer */
 .attribution {
-    position: absolute;
-    bottom: .8rem;
     left: 50%;
     transform: translateX(-50%);
     font-size: 11px;
